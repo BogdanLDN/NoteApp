@@ -27,6 +27,15 @@ namespace NoteApp.ViewModels
             List<NoteEntity> list = new List<NoteEntity>();
             using (var context = new NoteContext())
             {
+                if (!context.Notes.Any())
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        context.Notes.Add(new NoteEntity { Date = DateTime.Now, Description = "Notes Descriptiom", Name = "Note" + i });
+                        context.SaveChangesAsync();
+                    } 
+                   
+                }
                 list = await context.Notes.ToListAsync();
             }
             return list;
