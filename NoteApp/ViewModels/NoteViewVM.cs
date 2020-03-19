@@ -91,6 +91,7 @@ namespace NoteApp.ViewModels
                       if (note == null)
                       {
                           Task.Run(() => MessageBox.Show("Редагування доступне для існуючих записів, додайте новий запис."));
+                          return;
                       }
                       SelectedNote = note;
                       Task.Run(async () => await DataLoader.SaveChangesAsync(selectedNote));
