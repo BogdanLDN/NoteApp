@@ -57,7 +57,7 @@ namespace NoteApp.ViewModels
                       if (note != null)
                       {
                           Notes.Remove(note);
-                          Task.Run(async () => await RemoveEntityAsync(note));
+                          Task.Run(async () => await DataLoader.RemoveEntityAsync(note));
                       }
                   },
                  (obj) => Notes.Count > 0));
@@ -75,7 +75,7 @@ namespace NoteApp.ViewModels
                       NoteEntity note = new NoteEntity();
                       Notes.Insert(0, note);
                       SelectedNote = note;
-                      Task.Run(async () => await AddEntityAsync(note));
+                      Task.Run(async () => await DataLoader.AddEntityAsync(note));
                   }));
             }
         }
@@ -93,36 +93,12 @@ namespace NoteApp.ViewModels
                           Task.Run(() => MessageBox.Show("Редагування доступне для існуючих записів, додайте новий запис."));
                       }
                       SelectedNote = note;
-                      Task.Run(async () => await SaveChangesAsync(note));
+                      Task.Run(async () => await DataLoader.SaveChangesAsync(selectedNote));
                   }));
             }
         }
 
         private ICommand saveChangesCommand;
-        private async Task RemoveEntityAsync(NoteEntity note)
-        {
-            using (var context = new NoteContext())
-            {
-                context.Notes.Remove(note);
-                await context.SaveChangesAsync();
-            }
-        }
-        private async Task AddEntityAsync(NoteEntity note)
-        {
-            using (var context = new NoteContext())
-            {
-                context.Notes.Add(note);
-                await context.SaveChangesAsync();
-            }
-        }
-        private async Task SaveChangesAsync(NoteEntity note)
-        {
-            using (var context = new NoteContext())
-            {
-                context.Notes.Update(selectedNote);
-                await context.SaveChangesAsync();
-            }
-        }
 
     }
 }

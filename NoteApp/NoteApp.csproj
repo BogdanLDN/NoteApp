@@ -180,6 +180,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\BaseEntity.cs" />
+    <Compile Include="Data\DataLoader.cs" />
     <Compile Include="Data\NoteContext.cs" />
     <Compile Include="Data\NoteEntity.cs" />
     <Compile Include="Helpers\ReflectionHelper.cs" />
