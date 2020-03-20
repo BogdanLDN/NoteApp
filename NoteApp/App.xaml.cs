@@ -18,7 +18,6 @@ namespace NoteApp
     /// </summary>
     public partial class App : Application
     {
-        public NoteViewVM NoteViewVM { get; set; }
         public App()
         {
 
@@ -34,10 +33,7 @@ namespace NoteApp
             InitialiazeVM<NoteViewVM>();
             InitialiazeVM<NoteView>();
         }
-        private static BaseViewModel InitialiazeVM<BaseViewModel>() where BaseViewModel : new()
-        {
-            return new BaseViewModel();
-        }
+        private static BaseViewModel InitialiazeVM<BaseViewModel>() where BaseViewModel : new() { return new BaseViewModel(); }
 
     }
 }
