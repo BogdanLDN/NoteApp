@@ -31,9 +31,9 @@ namespace NoteApp
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
             InitialiazeVM<NoteViewVM>();
-            InitialiazeVM<NoteView>();
+            InitialiazeVM<NoteViewVM>();          
         }
-        private static BaseViewModel InitialiazeVM<BaseViewModel>() where BaseViewModel : new() { return new BaseViewModel(); }
+        private static BaseViewModel InitialiazeVM<T>() where T : BaseViewModel { return new BaseViewModel(); }
 
     }
 }
